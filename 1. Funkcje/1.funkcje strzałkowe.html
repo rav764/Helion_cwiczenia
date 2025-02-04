@@ -11,12 +11,48 @@
             return 0.5*podstawa*wysokosc
         }
         document.write(pole(5,4))
+        document.write("<hr>")
         document.write(pole(10,4))
+        document.write("<hr>")
         document.write(pole(10,8))
+        document.write("<hr>")
+
         const obwod=(bokA,bokB)=>{
             return 2*bokA+2*bokB
         }
         document.write(obwod(2,4))
+        document.write("<hr>")
+
+        const suma=(a,b)=> a+b //skrócona wersja bez return
+        document.write(suma(9,8))
+        document.write("<hr>")
+
+        const pierwszaLitera=(napis)=>napis.charAt(0)
+        const litera=pierwszaLitera("Rafał")
+        document.write(litera)
+        document.write("<hr>")
+
+        const inicjal=(imie,nazwisko)=>{
+            const i1=imie.charAt(0)
+            const n1=nazwisko.charAt(0)
+            return i1+"."+n1+"."
+        }
+        document.write(inicjal("Rafał","Fraj"))
+        document.write("<hr>")
+
+        const parzysta=(liczba)=>{
+            if (liczba%2==0) {
+                return "Parzysta"
+            } else {
+                return "Nieparzysta"
+            }
+        }
+        const wynik=parzysta(5)
+        document.write(wynik)
+        document.write("<hr>")
+
+        const imiona=["Anna","Piotr","Karol"]
+
     </script>
 </body>
 </html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const powitanie=(imie,callback)=>{//deklarujemy funkcję powitanie, która wywołuje funkcję callbackową
+            document.write(`Witaj ${imie}`)
+            callback()//wywołanie callbacku
+        }
+        const zyczenia=()=>{//funkcja wywaoływana jako callback
+            document.write(`<br>Miłego dnia`)
+        }
+        powitanie("Ania",zyczenia)
+
+        
+    </script>
+</body>
+</html>
