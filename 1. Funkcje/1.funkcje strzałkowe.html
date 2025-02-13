@@ -27,6 +27,7 @@
         document.write(suma(9,8))
         document.write("<hr>")
 
+
         const pierwszaLitera=(napis)=>napis.charAt(0)
         const litera=pierwszaLitera("Rafał")
         document.write(litera)
@@ -47,10 +48,25 @@
                 return "Nieparzysta"
             }
         }
+
         const wynik=parzysta(5)
         document.write(wynik)
         document.write("<hr>")
+        document.write(parzysta(4))
+        document.write("<hr>")
 
+        const kosztyPosiłku=(danieI,danieII,rabat)=>{
+            if (rabat) {
+                return (danieI+danieII)*0.8
+            } else {
+                return danieI+danieII
+            }
+        }
+        document.write("Koszt posiłku: "+kosztyPosiłku(10,40,false))
+        document.write("<hr>")
+        document.write("Koszt posiłku: "+kosztyPosiłku(10,40,true))
+        document.write("<hr>")
+        // Funkcja map
 
         const Numbers=[12, 85, 47, 19, 3, 92, 60, 44, 77, 31]
         document.write("Wszystkie liczby: "+Numbers)
@@ -69,7 +85,6 @@
             document.write(item+"<br>")
         }
         
-        
         const oddNumbers=(arr)=>arr.filter(item=>item%2!=0)
         const mojeLiczby1=oddNumbers(Numbers)
         document.write("<hr> Tablica liczb nieparzystych: ")
@@ -77,6 +92,9 @@
 
         const bigNumbers=(arr)=>arr.filter(item=>item>70)
         document.write("<hr>Duże liczby: "+bigNumbers(Numbers))
+
+        const middleNumbers=(arr)=>arr.filter(item=>item>40 && item<70)
+        document.write("<hr>Średnie liczby: "+middleNumbers(Numbers))
     </script>
     
 </body>

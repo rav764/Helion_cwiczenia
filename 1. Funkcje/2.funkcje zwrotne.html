@@ -4,19 +4,122 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 30px;
+            background-color: yellow;
+            margin: 5px;
+            border: 5px solid black;
+            font-size: 25px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
+    <div id="myDiv1">1</div>
+    <div id="myDiv2">2</div>
+    <div id="myDiv3">3</div>
+    <h1></h1>
     <script>
         const powitanie=(imie,callback)=>{//deklarujemy funkcję powitanie, która wywołuje funkcję callbackową
             document.write(`Witaj ${imie}`)
             callback()//wywołanie callbacku
         }
-        const zyczenia=()=>{//funkcja wywaoływana jako callback
+        const zyczeniaDzien=()=>{//funkcja wywoływana jako callback
             document.write(`<br>Miłego dnia`)
         }
-        powitanie("Ania",zyczenia)
+        const zyczeniaWieczor=()=>{
+            document.write(`<br>Miłego wieczoru`)
+        }
+        powitanie("Ania",zyczeniaDzien)
+        document.write("<hr>")
+        powitanie("Ania",zyczeniaWieczor)
+        document.write("<hr>")
+        powitanie("Paweł",zyczeniaWieczor)   
+         
+        // -------------------
+        const kalkulator=(a,b,callback)=>{
+            document.write(`<br>Podałeś liczby: ${a} ${b}`)
+            return callback(a,b)//wywołuję funkcję suma i jej wynik zwracam do programu
+        }
+        const suma=(a,b)=>{//funkcja wywoływana jako callback
+            return `<br>Suma liczb wynosi ${a+b}`
+        }
+        const roznica=(a,b)=>{//funkcja wywoływana jako callback
+            return `<br>Różnica liczb wynosi ${a-b}`
+        }        
+        document.write(kalkulator(3,4,suma))
+        document.write(kalkulator(21,89,suma))
+        document.write(kalkulator(100,20,roznica))
 
-        
+        //------------------------
+        const calculator=(a,b,callback)=>{
+            return "<br>Iloczyn wynosi: "+callback(a,b)
+        }
+
+        document.write(calculator(2,15,(a,b)=>a*b))//wykorzystanie funkcji anonimowej w callback
+
+
+        const zwierzeta=(kury,krowy,callback)=>{
+            return "<br>Ilość nóg wynosi: "+callback(kury,krowy)
+        }
+
+        document.write(zwierzeta(1,1,(kury,krowy)=>kury*2+krowy*4))
+// -------------------------
+        const myDivChange=(value,callback)=>{//piszę funkcję która będzie określać kolor a następnie za pomocą callbacku zmieniać kolor tła, tekstu albo obramowania
+            if (value==1) {//określam kolor
+                myColor='red'
+            } 
+            if (value==2) {
+                myColor='blue'
+            } 
+            if (value==3) {
+                myColor='green'
+            } 
+            callback(myColor)//wywołuje callback -> tło lub tekst lub obramowanie
+        }
+        const bgColor=(myColor)=>{//callback tło
+            document.getElementById("myDiv1").style.backgroundColor=myColor
+        }
+        const txtColor=(myColor)=>{//callback tekst
+            document.getElementById("myDiv1").style.color=myColor
+        }
+        const brdColor=(myColor)=>{//callback obramowanie
+            document.getElementById("myDiv1").style.borderColor=myColor
+        }
+
+        myDivChange(1,bgColor)//zmieniam kolor tła na czerwony
+        myDivChange(2,txtColor)
+        myDivChange(3,brdColor)
+        // ----------------------------
+        const myDivChangeSuper=(value,divNumber,callback)=>{//rozbudowanie wcześniejszej funkcji -> wybór diva
+            if (value==1) {
+                myColor='red'
+            } 
+            if (value==2) {
+                myColor='blue'
+            } 
+            if (value==3) {
+                myColor='green'
+            } 
+            console.log(value,divNumber)
+            myDiv=`myDiv${divNumber}`//tutaj tworzę identyfikator diva np myDiv1 myDiv2
+            console.log(divNumber,myDiv)
+            callback(myColor,myDiv)//wywołuję callbacka z kolorem i numerem diva
+        }
+        const bgColorSuper=(myColor,myDiv)=>{
+            document.getElementById(myDiv).style.backgroundColor=myColor
+        }
+        const txtColorSuper=(myColor,myDiv)=>{
+            document.getElementById(myDiv).style.color=myColor
+        }
+        const brdColorSuper=(myColor,myDiv)=>{
+            document.getElementById(myDiv).style.borderColor=myColor
+        }
+
+        myDivChangeSuper(1,3,bgColorSuper)
+        myDivChangeSuper(3,2,brdColorSuper)
     </script>
 </body>
 </html>
