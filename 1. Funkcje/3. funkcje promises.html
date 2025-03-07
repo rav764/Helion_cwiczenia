@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<!-- Zacznijmy od prostego przykładu, dzięki któremu sam zrozumiałem zasadę działania Promise w Javascript:
+Wyobraź sobie, że jesteś dzieckiem. Twoja mama jedzie do sklepu i mówi Ci, 
+że byłeś w tym tygodniu grzeczny, więc kupi Ci Twoje ulubione ciastko. 
+To jest właśnie Promise, czyli Obietnica.
+Składa się z 3 etapów:
+Pending: Okres, w którym czekasz aż mama wróci ze sklepu. 
+        Jednocześnie podczas czekania możesz robić inne rzeczy, bawić się samochodzikami, oglądać bajkę.
+Resolved: Mama wróciła ze sklepu i dała Ci obiecane ciastko.
+Rejected: Podczas zakupów wydarzyło się coś, co sprawiło, że mama wróciła do domu bez ciastka, np. nie było już żadnych w sklepie. -->
+<script>
+    // nasza obietnica przyjmuje dwa parametry:
+    // Resolve - jeśli obietnica zakończy się sukcesem
+    // Reject - jeśli wystąpi błąd podczas wykonywania obietnicy
+    
+    const getCookiePromise = new Promise((resolve, reject) => {
+    let isCookieInTheStore=true;
+
+    if(isCookieInTheStore) {
+        resolve();
+    }
+    else {
+        reject();
+    }
+    })
+    // Metoda then() jest wywoływana, jeśli nasz Promise zakończy się sukcesem (resolve). 
+    // Dzięki niemu możemy ustalić, co ma wydarzyć się potem
+    // Metoda catch() jest wywoływana w momencie, gdy nasz promise został odrzucony.
+    getCookiePromise
+    .then(() => {
+        console.log("Zjedz ciastko")
+    })
+    .catch(()=> {
+        console.log("Zjedz banana")
+    })
+
+    // Nasz promise wykona się dopiero po 3 sekundach, 
+    // do tego czasu znajduje się w stanie oczekującym.
+    // Po 3 sekundach promise zostanie spełniony. 
+    // Spowoduje to wypisanie na konsole Obietnica spełniona!. 
+    // W celu pobrania wyniku operacji zakończonej sukcesem musimy użyć metody then().
+    // PromiseTwo wykona się p 3,5 sekundy i zostanie odrzucony
+
+    const myPromise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve("Obietnica spełniona!");
+        }, 3000);
+    });
+
+    console.log("Obietnica w trakcie wykonywania...");
+    myPromise.then((result)=>{
+        console.log(result)
+    })
+
+    const myPromiseTwo = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            reject("Obietnica druga odrzucona!");
+        }, 3500);
+    });
+    myPromiseTwo.catch((result)=>{
+        console.log(result)
+    })
+// ewentualnie samodzielnie
+    const fetchData=new Promise((resolve,reject)=>{
+        setTimeout(()=>resolve('Joe'),500)
+    })
+    fetchData
+    .then((result)=>{
+        document.write(result)
+    })
+</script>
+
+</body>
+</html>
