@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const rectangle = new Promise((resolve,reject)=>{
+        let sideA=10
+        let sideB=20
+        let error="Złe dane"
+        if (sideA>0 && sideB>0) {
+            resolve({sideA,sideB})// resolve może przechowywać tylko jeden argument wobec czego użyj obiektu lub tablicy
+        }
+        else {
+            reject(error)
+        }
+
+    })
+    rectangle
+        .then(({sideA,sideB})=>{
+            let pole=sideA*sideB
+            document.write(`Pole prostokąta wynosi ${pole}`)
+        })
+        .catch((error)=>{
+            document.write(`Błędne dane`)
+        })
+
+    </script>
+</body>
+</html>
